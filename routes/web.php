@@ -22,7 +22,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::prefix('/shows')->middleware('auth')->group(function () {
+Route::prefix('/shows')->group(function () {
     Route::get('/', [ShowsController::class, 'index'])->name('shows');
 
     Route::get('/create', [ShowsController::class, 'create'])->name('shows.create');
@@ -40,7 +40,7 @@ Route::prefix('/shows')->middleware('auth')->group(function () {
     Route::delete('/{id}', [ShowsController::class, 'destroy'])->name('shows.destroy');
 });
 
-Route::prefix('/users')->middleware('auth')->group(function () {
+Route::prefix('/users')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users');
 
     Route::get('/create', [UserController::class, 'create'])->name('users.create');
