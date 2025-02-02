@@ -45,6 +45,24 @@ class ShowsController extends Controller
         return view('shows.index', compact('shows'));
     }
 
+    public function create()
+    {
+        if (!auth()->user()) {
+            return redirect('/login');
+        } elseif (auth()->user()->isMusician()) {
+            return redirect('/dashboard');
+        }
+
+        return view('shows.create');
+    }
+
+    public function store(CreateShowRequest $request)
+    {
+        Show::create(array_merge($request->all(), ['available_users' => json_encode([])]));
+
+        return redirect()->route('shows')->with('success', 'Data criada com sucesso!');
+    }
+
     public function musicianAvailability()
     {
         $shows = Show::query()->where('show_date', '>=', today()->toDateString())->get();
@@ -64,8 +82,8 @@ class ShowsController extends Controller
     public function setAvailability(Request $request)
     {
         $user = auth()->user();
-        $showIds = $request->input('shows', '[]');
-        $showIds = json_decode($showIds, true);
+
+        $showIds = $request->input('shows', []);
 
         foreach ($showIds as $showId) {
             $show = Show::findOrFail($showId);
@@ -78,24 +96,6 @@ class ShowsController extends Controller
         }
 
         return redirect()->route('dashboard')->with('success', 'Disponibilidade preenchida com sucesso!');
-    }
-
-    public function create()
-    {
-        if (!auth()->user()) {
-            return redirect('/login');
-        } elseif (auth()->user()->isMusician()) {
-            return redirect('/dashboard');
-        }
-
-        return view('shows.create');
-    }
-
-    public function store(CreateShowRequest $request)
-    {
-        Show::create(array_merge($request->all(), ['available_users' => '[]']));
-
-        return redirect()->route('shows')->with('success', 'Data criada com sucesso!');
     }
 
     public function show($id)
