@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const showCards = document.querySelectorAll('.show-card');
+    const showCards = document.querySelectorAll('.show-box');
     showCards.forEach(card => {
         card.addEventListener('click', function() {
             const showId = this.dataset.show_id;

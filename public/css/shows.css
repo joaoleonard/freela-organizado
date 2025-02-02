@@ -66,8 +66,8 @@ a {
     justify-content: space-between;
 }
 
-.show-card {
-    background: #f9f9f9;
+.show-box {
+    background: #e0e0e0;
     padding: 20px;
     border-radius: 8px;
     margin: 10px 20px;
