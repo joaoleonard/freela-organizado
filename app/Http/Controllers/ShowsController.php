@@ -92,7 +92,7 @@ class ShowsController extends Controller
 
     public function store(CreateShowRequest $request)
     {
-        Show::create(array_merge($request->all(), ['available_users' => '']));
+        Show::create(array_merge($request->all(), ['available_users' => '[]']));
 
         return redirect()->route('shows')->with('success', 'Data criada com sucesso!');
     }

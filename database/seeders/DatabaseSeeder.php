@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
                 'login' => 'master',
                 'password' => config('app.master_password'),
                 'pix' => '',
-                'phone' => '(43) 99950-8659',
+                'phone' => '',
                 'role_id' => 1,
             ]
         );
