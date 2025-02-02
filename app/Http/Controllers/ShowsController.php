@@ -64,7 +64,11 @@ class ShowsController extends Controller
     public function setAvailability(Request $request)
     {
         $user = auth()->user();
-        $showIds = $request->input('shows', []);
+        $showIds = $request->input('shows', '[]');
+        
+        if ($showIds === '[]') {
+            $showIds = [];
+        }
 
         foreach ($showIds as $showId) {
             $show = Show::findOrFail($showId);
