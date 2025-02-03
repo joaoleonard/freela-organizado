@@ -31,7 +31,7 @@
                         <div class="user-infos">
                             <p class="musician-name">{{ $show->user->name }}</p>
                             <p><strong>Telefone:</strong> {{ $show->user->phone }}</p>
-                            <p><strong>Pix:</strong> joao@email.com</p>
+                            <p><strong>Pix:</strong> {{ $show->user->pix }}</p>
                         </div>
                     @endif
                 </div>
