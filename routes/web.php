@@ -29,15 +29,15 @@ Route::prefix('/shows')->middleware('auth')->group(function () {
 
     Route::get('/create', [ShowsController::class, 'create'])->name('shows.create');
 
+    Route::get('/disponibilidade', [ShowsController::class, 'musicianAvailability'])->name('disponibilidade');
+
+    Route::post('/disponibilidade', [ShowsController::class, 'setAvailability'])->name('set.disponibilidade');
+
     Route::get('/{id}', [ShowsController::class, 'show'])->name('shows.show');
 
     Route::post('/{id}', [ShowsController::class, 'update'])->name('shows.update');
 
     Route::delete('/{id}', [ShowsController::class, 'destroy'])->name('shows.destroy');
-
-    Route::get('/disponibilidade', [ShowsController::class, 'musicianAvailability'])->name('disponibilidade');
-
-    Route::post('/disponibilidade', [ShowsController::class, 'setAvailability'])->name('set.disponibilidade');
 });
 
 Route::prefix('/users')->middleware('auth')->group(function () {
