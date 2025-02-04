@@ -7,6 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    const users = document.querySelectorAll('.user-card');
+    users.forEach(card => {
+        card.addEventListener('click', function() {
+            const userId = this.dataset.user_id;
+            window.location.href = `users/${userId}`;
+        });
+    });
+
+    const backButton = document.querySelector('.back-button');
+    if (backButton) {
+        backButton.addEventListener('click', function() {
+            window.history.back();
+        });
+    }
+
     const popup = document.querySelector('.popup-message');
     if (popup) {
         setTimeout(() => {

@@ -1,54 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+@extends('layouts.dashboard')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuários</title>
+@section('title', 'Usuários')
+
+@section('styles')
     <link rel="stylesheet" href="{{ asset('css/users.css') }}">
-    <script src="{{ asset('js/index.js') }}" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
+@endsection
 
-<body>
-    @include('components.header')
+@section('content')
+    <h2>Usuários</h2>
 
-    <main class="dashboard-container">
-        <h2>Usuários</h2>
+    @foreach ($users as $user)
+        <div class="user-card" data-user_id="{{ $user->id }}">
+            <h3>{{ $user->name }}</h3>
 
-        @foreach ($users as $user)
-            <div class="user-card">
-                <h3>{{ $user->name }}</h3>
-
-                <div class="user-infos-container">
-                    <div class="user-infos">
-                        <p><strong>Telefone:</strong> {{ $user->phone }}</p>
-                        <p><strong>Pix:</strong> {{ $user->pix }}</p>
-                        <p><strong>Função:</strong> {{ $user->role->getFormattedType() }}</p>
-                    </div>
-                    
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="delete-form">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete-btn">X</button>
-                    </form>
+            <div class="user-infos-container">
+                <div class="user-infos">
+                    <p><strong>Telefone:</strong> {{ $user->phone }}</p>
+                    <p><strong>Pix:</strong> {{ $user->pix }}</p>
+                    <p><strong>Função:</strong> {{ $user->role->getFormattedType() }}</p>
                 </div>
             </div>
-        @endforeach
-
-        <div class="button-group">
-            @if (auth()->user()->isMaster())
-                <a href="{{ route('users.create') }}" class="action-btn">Cadastrar Usuário</a>
-            @endif
         </div>
-    </main>
+    @endforeach
 
-    @if (session('success'))
-        <div class="popup-message">
-            {{ session('success') }}
-        </div>
-    @endif
-</body>
+    <div class="button-group">
+        @if (auth()->user()->isMaster())
+            <a href="{{ route('users.create') }}" class="action-btn">Cadastrar Usuário</a>
+        @endif
+    </div>
+@endsection
 
-</html>
+

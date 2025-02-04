@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     public function index()
     {
@@ -40,6 +41,37 @@ class UserController extends Controller
         User::create($data);
 
         return redirect()->route('users')->with('success', 'Usuário criado com sucesso!');
+    }
+
+    public function show($id)
+    {
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->route('users')->with('error', 'Usuário não encontrado!');
+        }
+
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(UpdateUserRequest $request, $id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->route('users')->with('error', 'Usuário não encontrado!');
+        }
+
+        $data = $request->validated();
+
+        $user->update($data);
+
+        if (auth()->user()->isMaster()) {
+            return redirect()->route('users')->with('success', 'Usuário atualizado com sucesso!');
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Dados atualizados com sucesso!');
     }
 
     public function destroy($id)

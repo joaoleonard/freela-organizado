@@ -1,0 +1,153 @@
+/* Fonte e Reset */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to right, #161c33, #764ba2);
+    margin: 0;
+    padding: 10px;
+    color: #333;
+}
+
+.header {
+    background: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header h1 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.logout-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #cc0000;
+}
+
+.dashboard-container {
+    max-width: 600px;
+    margin: 100px auto 0;
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.divisor {
+    margin: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.button-group {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.action-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    margin: 5px 0;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-btn:hover {
+    background: #5563c1;
+}
+
+.outline-btn {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.outline-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+.popup-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c3e6cb;
+    font-size: 15px;
+}
+
+.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@media screen and (max-width: 670px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+
+    .header h1,
+    h2,
+    h3 {
+        font-size: 18px;
+        margin: 10px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .button-group {
+        margin-bottom: 10px;
+    }
+
+    .action-btn {
+        font-size: 16px;
+    }
+}

@@ -1,61 +1,5 @@
-/* Fonte e Reset */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #161c33, #764ba2);
-    margin: 0;
-    padding: 10px;
-    color: #333;
-}
-
-.header {
-    background: #fff;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.header h1 {
-    font-size: 22px;
-    font-weight: 600;
-}
-
-.logout-btn {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.logout-btn:hover {
-    background: #cc0000;
-}
-
 .dashboard-container {
-    max-width: 750px;
-    margin: 100px auto 0;
-    text-align: center;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    flex-wrap: wrap;
+    min-width: 750px !important;
 }
 
 .shows-container {
@@ -79,6 +23,11 @@ a {
     justify-content: center;
     flex-direction: column;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.show-box:hover {
+    background: #d0d0d0;
 }
 
 select {
@@ -102,49 +51,6 @@ h3 {
 .week-day {
     font-size: 14px;
     margin-bottom: 10px;
-}
-
-@media screen and (max-width: 600px) {
-    .dashboard-container {
-        padding: 10px;
-    }
-
-    .show-card {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .header h1, h2, h3 {
-        font-size: 18px;
-        margin: 10px;
-        margin-bottom: 0;
-    }
-
-    p {
-        margin: 0;
-    }
-}
-
-.divisor {
-    border-right: 1px solid #ccc;
-}
-
-.popup-message {
-    background: #d4edda;
-    color: #155724;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #c3e6cb;
-    font-size: 15px;
 }
 
 .title-container {
@@ -171,4 +77,11 @@ h3 {
 
 .add-button:hover {
     background: #5563c1;
+}
+
+@media screen and (max-width: 670px) {
+    .show-box {
+        flex-direction: column;
+        padding: 10px;
+    }
 }
