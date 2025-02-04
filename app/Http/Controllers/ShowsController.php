@@ -85,13 +85,23 @@ class ShowsController extends Controller
 
         $showIds = $request->input('shows', []);
 
-        foreach ($showIds as $showId) {
-            $show = Show::findOrFail($showId);
-            $availableUsers = $show->available_users ? explode(',', $show->available_users) : [];
-            if (!in_array($user->id, $availableUsers)) {
-                $availableUsers[] = $user->id;
-                $show->available_users = implode(',', $availableUsers);
-                $show->save();
+        $allShows = Show::query()->where('show_date', '>=', today()->toDateString())->get();
+
+        foreach ($allShows as $show) {
+            if (in_array($show->id, $showIds)) {
+                $availableUsers = $show->available_users ? explode(',', $show->available_users) : [];
+                if (!in_array($user->id, $availableUsers)) {
+                    $availableUsers[] = $user->id;
+                    $show->available_users = implode(',', $availableUsers);
+                    $show->save();
+                }
+            } else {
+                $availableUsers = $show->available_users ? explode(',', $show->available_users) : [];
+                if (($key = array_search($user->id, $availableUsers)) !== false) {
+                    unset($availableUsers[$key]);
+                    $show->available_users = implode(',', $availableUsers);
+                    $show->save();
+                }
             }
         }
 

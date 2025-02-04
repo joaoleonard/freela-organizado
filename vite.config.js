@@ -11,8 +11,5 @@ export default defineConfig({
     build: {
         outDir: 'public',
         assetsDir: '',
-        rollupOptions: {
-            input: '/resources/js/app.js',
-        },
     },
 });

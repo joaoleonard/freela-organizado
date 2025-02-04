@@ -25,19 +25,19 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::prefix('/shows')->middleware('auth')->group(function () {
     Route::get('/', [ShowsController::class, 'index'])->name('shows');
 
-    Route::get('/create', [ShowsController::class, 'create'])->name('shows.create');
-
     Route::post('/', [ShowsController::class, 'store'])->name('shows.store');
 
-    Route::get('/disponibilidade', [ShowsController::class, 'musicianAvailability'])->name('disponibilidade');
-
-    Route::post('/disponibilidade', [ShowsController::class, 'setAvailability'])->name('set.disponibilidade');
+    Route::get('/create', [ShowsController::class, 'create'])->name('shows.create');
 
     Route::get('/{id}', [ShowsController::class, 'show'])->name('shows.show');
 
     Route::post('/{id}', [ShowsController::class, 'update'])->name('shows.update');
 
     Route::delete('/{id}', [ShowsController::class, 'destroy'])->name('shows.destroy');
+
+    Route::get('/disponibilidade', [ShowsController::class, 'musicianAvailability'])->name('disponibilidade');
+
+    Route::post('/disponibilidade', [ShowsController::class, 'setAvailability'])->name('set.disponibilidade');
 });
 
 Route::prefix('/users')->middleware('auth')->group(function () {
