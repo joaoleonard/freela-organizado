@@ -45,7 +45,7 @@ input {
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 0.875rem;
     transition: 0.3s;
     outline: none;
     box-sizing: border-box;
@@ -65,7 +65,7 @@ input:focus {
     width: 100%;
     cursor: pointer;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 0.875rem;
     transition: 0.3s;
 }
 
@@ -88,5 +88,5 @@ input:focus {
     right: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #f5c6cb;
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
