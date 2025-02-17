@@ -14,17 +14,20 @@
 
         <div class="form-group">
             <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" value="{{ $user->name }}" required>
+            <input type="text" id="name" name="name" value="{{ $user->name }}" readonly="{{ $user->isAdmin() }}" required>
         </div>
         <div class="form-group">
             <label for="phone">Telefone:</label>
-            <input type="text" id="phone" name="phone" value="{{ $user->phone }}" required>
+            <input type="text" id="phone" name="phone" value="{{ $user->phone }}" readonly="{{ $user->isAdmin() }}" required>
         </div>
         <div class="form-group">
             <label for="pix">Pix:</label>
-            <input type="text" id="pix" name="pix"value="{{ $user->pix }}" required>
+            <input type="text" id="pix" name="pix"value="{{ $user->pix }}" readonly="{{ $user->isAdmin() }}" required>
         </div>
-        <button class="action-btn" type="submit">Editar</button>
+
+        @if (!auth()->user()->isAdmin())
+            <button class="action-btn" type="submit">Editar</button>
+        @endif
     </form>
 
     @if (auth()->user()->isMaster())

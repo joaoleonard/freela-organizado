@@ -12,8 +12,11 @@
         @if (auth()->user()->isMaster())
             <a href="{{ route('shows') }}" class="action-btn">Gerenciar Datas</a>
             <a href="{{ route('users') }}" class="action-btn">Gerenciar Usuários</a>
+        @elseif (auth()->user()->isAdmin())
+            <a href="{{ route('users') }}" class="action-btn">Músicos</a>
         @elseif (auth()->user()->isMusician())
-        <a href="{{ route('users.show', ['id' => auth()->user()->id]) }}" class="action-btn outline-btn">Atualizar Meus Dados</a>
+            <a href="{{ route('users.show', ['id' => auth()->user()->id]) }}" class="action-btn outline-btn">Atualizar Meus
+                Dados</a>
             <a href="{{ route('disponibilidade') }}" class="action-btn">Preencher Disponibilidade</a>
         @endif
     </div>

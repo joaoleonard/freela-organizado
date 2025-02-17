@@ -46,10 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::prefix('/users')->group(function () {
+        Route::get('/', [UsersController::class, 'index'])->name('users');
+
         Route::group(['middleware' => IsMaster::class], function () {
-
-            Route::get('/', [UsersController::class, 'index'])->name('users');
-
             Route::get('/create', [UsersController::class, 'create'])->name('users.create');
 
             Route::post('/', [UsersController::class, 'store'])->name('users.store');

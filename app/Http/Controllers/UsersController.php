@@ -16,7 +16,10 @@ class UsersController extends Controller
             return redirect('/dashboard');
         }
 
-        $users = User::query()->where('id', '!=', auth()->user()->id)->get();
+        $users = User::query()
+            ->where('id', '!=', auth()->user()->id)
+            ->where('role_id', '!=', '1')
+            ->get();
 
         return view('users.index', compact('users'));
     }
