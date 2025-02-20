@@ -19,7 +19,7 @@ class ShowsController extends Controller
             return redirect('/dashboard');
         }
 
-        $shows = Show::query()->where('show_date', '>=', today()->toDateString())->get();
+        $shows = Show::query()->where('show_date', '>=', today()->toDateString())->orderBy('show_date')->get();
 
         $shows = $shows->map(function ($show) {
             $show->users = collect(explode(',', $show->available_users))
@@ -65,7 +65,7 @@ class ShowsController extends Controller
 
     public function musicianAvailability()
     {
-        $shows = Show::query()->where('show_date', '>=', today()->toDateString())->get();
+        $shows = Show::query()->where('show_date', '>=', today()->toDateString())->orderBy('show_date')->get();
 
         $shows = $shows->map(function ($show) {
             \Carbon\Carbon::setLocale('pt_BR');

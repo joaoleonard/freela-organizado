@@ -15,12 +15,10 @@ class DashboardController extends Controller
         }
 
         if ($user->isMaster() || $user->isAdmin()) {
-            $shows = Show::query()->where('show_date', '>=', today()->toDateString())->get();
+            $shows = Show::query()->where('show_date', '>=', today()->toDateString())->orderBy('show_date')->get();
         } else {
-            $shows = Show::query()->where('show_date', '>=', today()->toDateString())->where('user_id', $user->id)->get();
+            $shows = Show::query()->where('show_date', '>=', today()->toDateString())->where('user_id', $user->id)->orderBy('show_date')->get();
         }
-
-
 
         $shows = $shows->map(function ($show) {
             \Carbon\Carbon::setLocale('pt_BR');
