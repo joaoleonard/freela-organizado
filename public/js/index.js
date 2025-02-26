@@ -28,4 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
             popup.style.display = 'none';
         }, 5000);
     }
+
+    const deleteButton = document.querySelector('.delete-button');
+    if (deleteButton) {
+        deleteButton.addEventListener('click', function() {
+            const result = confirm('Tem certeza que deseja continuar?');
+            if (result) {
+                const form = document.getElementById('delete-form');
+                
+                form.submit();
+            }
+        });
+    }
 });

@@ -14,15 +14,18 @@
 
         <div class="form-group">
             <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" value="{{ $user->name }}" readonly="{{ $user->isAdmin() }}" required>
+            <input type="text" id="name" name="name" value="{{ $user->name }}" readonly="{{ $user->isAdmin() }}"
+                required>
         </div>
         <div class="form-group">
             <label for="phone">Telefone:</label>
-            <input type="text" id="phone" name="phone" value="{{ $user->phone }}" readonly="{{ $user->isAdmin() }}" required>
+            <input type="text" id="phone" name="phone" value="{{ $user->phone }}"
+                readonly="{{ $user->isAdmin() }}" required>
         </div>
         <div class="form-group">
             <label for="pix">Pix:</label>
-            <input type="text" id="pix" name="pix"value="{{ $user->pix }}" readonly="{{ $user->isAdmin() }}" required>
+            <input type="text" id="pix" name="pix"value="{{ $user->pix }}" readonly="{{ $user->isAdmin() }}"
+                required>
         </div>
 
         @if (!auth()->user()->isAdmin())
@@ -31,11 +34,11 @@
     </form>
 
     @if (auth()->user()->isMaster())
-        <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="form-container" id="delete-form">
             @csrf
             @method('DELETE')
-            <button class="action-btn error-btn" type="submit">Excluir</button>
         </form>
+        <button class="action-btn error-btn delete-button" type="submit">Excluir</button>
     @endif
 
     <button class="action-btn back-button" type="submit">Voltar</button>

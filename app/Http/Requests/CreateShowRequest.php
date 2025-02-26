@@ -23,6 +23,7 @@ class CreateShowRequest extends FormRequest
     {
         return [
             'show_date' => ['required', 'date'],
+            'lunchtime' => ['required', 'boolean'],
         ];
     }
 }

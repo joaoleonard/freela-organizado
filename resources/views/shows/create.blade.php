@@ -16,6 +16,15 @@
             <label for="show_date">Data do Show:</label>
             <input type="date" id="show_date" name="show_date" required>
         </div>
+
+        <div class="form-group">
+            <label for="lunchtime">É Almoço?</label>
+            <select id="lunchtime" name="lunchtime" required class="select">
+                <option value="0">Não</option>
+                <option value="1">Sim</option>
+            </select>
+        </div>
+
         <button class="action-btn" type="submit">Cadastrar</button>
     </form>
 @endsection

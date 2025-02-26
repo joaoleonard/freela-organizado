@@ -16,8 +16,12 @@
                 <input class="checkbox" type="checkbox" id="show-{{ $show->id }}" name="shows[]" value="{{ $show->id }}"
                     {{ $show->checked ? 'checked' : '' }}>
                 <label for="show-{{ $show->id }}">{{ $show->formatted_date }}</label>
+                @if ($show->lunchtime)
+                    <p class="lunchtime">* Almoço</p>
+                @endif
+                <p></p>
             </div>
-            @if ($show->isSaturday)
+            @if ($show->isSaturday && !$show->lunchtime)
                 <div class="divisor"></div>
             @endif
         @endforeach

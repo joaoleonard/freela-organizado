@@ -37,3 +37,8 @@
         transform: rotate(45deg);
     }
 }
+
+.lunchtime {
+    font-weight: 600;
+    margin: 0 10px;
+}

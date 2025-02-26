@@ -6,6 +6,7 @@ use App\Http\Requests\CreateShowRequest;
 use App\Http\Requests\UpdateShowRequest;
 use App\Models\Show;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ShowsController extends Controller
 {
@@ -19,7 +20,11 @@ class ShowsController extends Controller
             return redirect('/dashboard');
         }
 
-        $shows = Show::query()->where('show_date', '>=', today()->toDateString())->orderBy('show_date')->get();
+        $shows = Show::query()
+            ->where('show_date', '>=', today()->toDateString())
+            ->orderBy('show_date')
+            ->orderByDesc('lunchtime')
+            ->get();
 
         $shows = $shows->map(function ($show) {
             $show->users = collect(explode(',', $show->available_users))
@@ -65,7 +70,11 @@ class ShowsController extends Controller
 
     public function musicianAvailability()
     {
-        $shows = Show::query()->where('show_date', '>=', today()->toDateString())->orderBy('show_date')->get();
+        $shows = Show::query()
+            ->where('show_date', '>=', today()->toDateString())
+            ->orderBy('show_date')
+            ->orderByDesc('lunchtime')
+            ->get();
 
         $shows = $shows->map(function ($show) {
             \Carbon\Carbon::setLocale('pt_BR');

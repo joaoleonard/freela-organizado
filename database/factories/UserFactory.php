@@ -28,8 +28,9 @@ class UserFactory extends Factory
             'login' => $this->faker->unique()->userName,
             'password' => '123',
             'phone' => $this->faker->phoneNumber,
-            'role_id' => 1,
+            'role_id' => 3,
             'remember_token' => Str::random(10),
+            'pix' => $this->faker->unique()->safeEmail,
         ];
     }
 }

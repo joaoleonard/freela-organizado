@@ -28,10 +28,12 @@
         <button class="action-btn" type="submit">Salvar</button>
     </form>
 
-    <form action="{{ route('shows.destroy', ['id' => $show->id]) }}" method="POST" class="form-container">
+    <form action="{{ route('shows.destroy', ['id' => $show->id]) }}" method="POST" class="form-container" id="delete-form">
         @csrf
         @method('DELETE')
-        <button type="submit" class="action-btn error-btn">Deletar Data</button>
     </form>
+
+    <button type="submit" class="action-btn error-btn delete-button">Deletar Data</button>
+
     <button class="action-btn back-button" type="submit">Voltar</button>
 @endsection
