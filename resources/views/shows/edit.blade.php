@@ -9,7 +9,13 @@
 @section('content')
     <h2>Editar Show</h2>
 
-    <h3>{{ $show->formatted_date }}</h3>
+    <div>
+        <h3>{{ $show->formatted_date }}</h3>
+
+        @if ($show->lunchtime)
+            <span class="lunchtime">almoço</span>
+        @endif
+    </div>
 
     <form action="{{ route('shows.update', ['id' => $show->id]) }}" method="POST"class="form-container">
         @csrf
