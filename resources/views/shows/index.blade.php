@@ -26,6 +26,9 @@
                 <h3>{{ $show->formatted_date }}</h3>
                 <p class="week-day">{{ $show->week_day }}</p>
                 <p>{{ $show->user?->name }}</p>
+                <div class="available-users-count" title="{{ $show->users->pluck('name')->join("\n") }}">
+                    <p>{{ $show->users->count() }}</p>
+                </div>
             </div>
         @endforeach
     </div>

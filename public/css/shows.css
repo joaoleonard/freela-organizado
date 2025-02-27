@@ -24,10 +24,30 @@
     flex-direction: column;
     cursor: pointer;
     transition: 0.3s;
+    position: relative;
 }
 
 .show-box:hover {
     background: #d0d0d0;
+}
+
+.available-users-count {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.available-users-count[title] {
+    white-space: pre-line;
 }
 
 select {
