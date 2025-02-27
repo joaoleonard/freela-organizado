@@ -34,11 +34,6 @@ class ShowsController extends Controller
                 })
                 ->filter();
 
-            $show->user = \App\Models\User::find($show->user_id);
-            if ($show->user) {
-                $show->users->push($show->user);
-            }
-
             \Carbon\Carbon::setLocale('pt_BR');
             $show->formatted_date = \Carbon\Carbon::parse($show->show_date)->translatedFormat('d/m');
             $show->week_day = \Carbon\Carbon::parse($show->show_date)->translatedFormat('(l)');
