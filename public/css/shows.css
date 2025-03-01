@@ -74,8 +74,17 @@ h3 {
 }
 
 .lunchtime {
-    font-size: 1rem;
-    font-weight: 600;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .title-container {
@@ -114,5 +123,21 @@ h3 {
         flex-direction: column;
         padding: 10px;
         margin: 10px;
+    }
+
+    .available-users-count, .lunchtime {
+        font-size: 0.6rem;
+    }
+
+    .lunchtime {
+        top: 5px;
+        right: 5px;
+    }
+
+    .available-users-count {
+        top: 5px;
+        left: 5px;
+        width: 15px;
+        height: 15px;
     }
 }

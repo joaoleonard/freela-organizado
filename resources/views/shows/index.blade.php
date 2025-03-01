@@ -21,7 +21,7 @@
         @foreach ($shows as $show)
             <div class="show-box bg-{{ $show->user_id }}" data-show_id="{{ $show->id }}">
                 @if ($show->lunchtime)
-                    <p class="lunchtime">Almoço</p>
+                    <p class="lunchtime">almoço</p>
                 @endif
                 <h3>{{ $show->formatted_date }}</h3>
                 <p class="week-day">{{ $show->week_day }}</p>

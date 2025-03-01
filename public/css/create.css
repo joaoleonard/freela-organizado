@@ -33,7 +33,7 @@
     border: 1px solid #ccc;
     font-size: 1rem;
     display: block;
-    height: 47px;
+    font-family: "Poppins", sans-serif;
 }
 
 .form-group select {
@@ -43,6 +43,7 @@
     border: 1px solid #ccc;
     font-size: 1rem;
     height: 47px;
+    font-family: "Poppins", sans-serif;
 }
 
 .error-btn {
