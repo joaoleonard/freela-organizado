@@ -17,8 +17,9 @@
         @endif
     </div>
 
-    <form action="{{ route('shows.update', ['id' => $show->id]) }}" method="POST"class="form-container">
+    <form action="{{ route('shows.update', ['show' => $show->id]) }}" method="POST" class="form-container">
         @csrf
+        @method('PUT')
 
         <div class="form-group">
             <label for="user_id">Músico:</label>
@@ -34,7 +35,7 @@
         <button class="action-btn" type="submit">Salvar</button>
     </form>
 
-    <form action="{{ route('shows.destroy', ['id' => $show->id]) }}" method="POST" class="form-container" id="delete-form">
+    <form action="{{ route('shows.destroy', ['show' => $show->id]) }}" method="POST" class="form-container" id="delete-form">
         @csrf
         @method('DELETE')
     </form>

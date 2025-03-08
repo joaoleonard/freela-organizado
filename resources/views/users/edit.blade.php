@@ -9,22 +9,23 @@
 @section('content')
     <h2>{{ $user->name }}</h2>
 
-    <form action="{{ route('users.update', ['id' => $user->id]) }}" method="POST">
+    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">
         @csrf
+        @method('PUT')
 
         <div class="form-group">
             <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" value="{{ $user->name }}" readonly="{{ $user->isAdmin() }}"
+            <input type="text" id="name" name="name" value="{{ $user->name }}" {{ auth()->user()->isAdmin() ? 'readonly' : '' }}
                 required>
         </div>
         <div class="form-group">
             <label for="phone">Telefone:</label>
             <input type="text" id="phone" name="phone" value="{{ $user->phone }}"
-                readonly="{{ $user->isAdmin() }}" required>
+                {{ auth()->user()->isAdmin() ? 'readonly' : '' }} required>
         </div>
         <div class="form-group">
             <label for="pix">Pix:</label>
-            <input type="text" id="pix" name="pix"value="{{ $user->pix }}" readonly="{{ $user->isAdmin() }}"
+            <input type="text" id="pix" name="pix"value="{{ $user->pix }}" {{ auth()->user()->isAdmin() ? 'readonly' : '' }}
                 required>
         </div>
 

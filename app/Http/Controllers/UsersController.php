@@ -46,11 +46,8 @@ class UsersController extends Controller
         return redirect()->route('users')->with('success', 'Usuário criado com sucesso!');
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-
-        $user = User::find($id);
-
         if (!$user) {
             return redirect()->route('users')->with('error', 'Usuário não encontrado!');
         }
@@ -58,10 +55,8 @@ class UsersController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $user = User::find($id);
-
         if (!$user) {
             return redirect()->route('users')->with('error', 'Usuário não encontrado!');
         }
@@ -77,10 +72,8 @@ class UsersController extends Controller
         return redirect()->route('dashboard')->with('success', 'Dados atualizados com sucesso!');
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
-
         if (!$user) {
             return redirect()->route('users')->with('error', 'Usuário não encontrado!');
         }

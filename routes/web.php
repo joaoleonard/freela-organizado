@@ -37,11 +37,11 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::post('/', [ShowsController::class, 'store'])->name('shows.store');
 
-            Route::get('/{id}', [ShowsController::class, 'show'])->name('shows.show');
+            Route::get('/{show}', [ShowsController::class, 'show'])->name('shows.show');
 
-            Route::post('/{id}', [ShowsController::class, 'update'])->name('shows.update');
+            Route::put('/{show}', [ShowsController::class, 'update'])->name('shows.update');
 
-            Route::delete('/{id}', [ShowsController::class, 'destroy'])->name('shows.destroy');
+            Route::delete('/{show}', [ShowsController::class, 'destroy'])->name('shows.destroy');
         });
     });
 
@@ -53,11 +53,11 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::post('/', [UsersController::class, 'store'])->name('users.store');
 
-            Route::delete('/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+            Route::delete('/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
         });
 
-        Route::get('/{id}', [UsersController::class, 'show'])->name('users.show');
+        Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
 
-        Route::post('/{id}', [UsersController::class, 'update'])->name('users.update');
+        Route::put('/{user}', [UsersController::class, 'update'])->name('users.update');
     });
 });

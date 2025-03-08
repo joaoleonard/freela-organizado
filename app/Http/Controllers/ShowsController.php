@@ -112,10 +112,8 @@ class ShowsController extends Controller
         return redirect()->route('dashboard')->with('success', 'Disponibilidade preenchida com sucesso!');
     }
 
-    public function show($id)
+    public function show(Show $show)
     {
-        $show = Show::findOrFail($id);
-
         \Carbon\Carbon::setLocale('pt_BR');
         $show->formatted_date = \Carbon\Carbon::parse($show->show_date)->translatedFormat('d/m/y (l)');
         $show->users = collect(explode(',', $show->available_users))
@@ -128,18 +126,17 @@ class ShowsController extends Controller
         return view('shows.edit', compact('show'));
     }
 
-    public function update(UpdateShowRequest $request, $id)
+    public function update(UpdateShowRequest $request, Show $show)
     {
-        $show = Show::findOrFail($id);
         $show->fill($request->all());
         $show->save();
 
         return redirect()->route('shows')->with('success', 'Show editado com sucesso!');
     }
 
-    public function destroy($id)
+    public function destroy(Show $show)
     {
-        Show::destroy($id);
+        $show->delete();
 
         return redirect()->route('shows')->with('success', 'Show deletado com sucesso!');
     }
