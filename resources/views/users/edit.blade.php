@@ -9,7 +9,7 @@
 @section('content')
     <h2>{{ $user->name }}</h2>
 
-    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">
+    <form action="{{ route('users.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
 

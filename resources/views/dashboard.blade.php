@@ -15,7 +15,7 @@
         @elseif (auth()->user()->isAdmin())
             <a href="{{ route('users') }}" class="action-btn">Músicos</a>
         @elseif (auth()->user()->isMusician())
-            <a href="{{ route('users.show', ['id' => auth()->user()->id]) }}" class="action-btn outline-btn">Atualizar Meus
+            <a href="{{ route('users.show', auth()->user()->id) }}" class="action-btn outline-btn">Atualizar Meus
                 Dados</a>
             <a href="{{ route('disponibilidade') }}" class="action-btn">Preencher Disponibilidade</a>
         @endif
