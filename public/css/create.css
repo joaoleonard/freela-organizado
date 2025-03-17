@@ -48,10 +48,12 @@
 
 .error-btn {
     background-color: #ff4d4d;
+    border: 2px solid #ff4d4d;
 }
 
 .error-btn:hover {
     background-color: #cc0000;
+
 }
 
 .back-button {

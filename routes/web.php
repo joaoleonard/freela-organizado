@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShowsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WaitListController;
 use App\Http\Middleware\IsMaster;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,10 @@ Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/join-waitinglist', [WaitListController::class, 'create']);
+
+Route::post('/join-waitinglist', [WaitListController::class, 'store'])->name('join-waitinglist');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -59,5 +64,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
 
         Route::put('/{user}', [UsersController::class, 'update'])->name('users.update');
+    });
+
+    Route::prefix('/waitlist')->group(function () {
+        Route::group(['middleware' => IsMaster::class], function () {
+            Route::get('/', [WaitListController::class, 'index'])->name('waitlist');
+
+            Route::get('/{musicianWaitlist}', [WaitListController::class, 'show'])->name('waitlist.show');
+
+            Route::put('/{musicianWaitlist}', [WaitListController::class, 'update'])->name('waitlist.update');
+
+            Route::delete('/{musicianWaitlist}', [WaitListController::class, 'destroy'])->name('waitlist.destroy');
+        });
     });
 });

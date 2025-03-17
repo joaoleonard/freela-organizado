@@ -13,19 +13,19 @@
 
 <body>
     <div class="container">
-        <div class="login-box">
+        <div class="box">
             <h2>Entrar</h2>
             <form action="/login" method="POST">
                 @csrf
-                <div class="input-group">
+                <div class="form-group">
                     <label for="login">Login</label>
                     <input type="login" id="login" name="login" required>
                 </div>
-                <div class="input-group">
+                <div class="form-group">
                     <label for="password">Senha</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="btn">Acessar</button>
+                <button type="submit" class="action-btn">Acessar</button>
             </form>
         </div>
 

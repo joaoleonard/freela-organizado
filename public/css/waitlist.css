@@ -1,0 +1,108 @@
+.user-infos-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-form {
+    display: inline-block;
+}
+
+.delete-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.musician-waitlist-card {
+    background: #e0e0e0;
+    padding: 20px 40px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+.musician-waitlist-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.user-infos {
+    text-align: right;
+}
+
+.musician-waitlist-card:hover {
+    background: #d0d0d0;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.description {
+    text-align: justify;
+}
+
+.pending-icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #667eea;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.approved-icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #28a745;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rejected-icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+    .user-card {
+        flex-direction: column;
+        padding: 10px;
+    }
+}

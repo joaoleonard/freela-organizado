@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\MusicianWaitlist;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -21,7 +22,12 @@ class UsersController extends Controller
             ->where('role_id', '!=', '1')
             ->get();
 
-        return view('users.index', compact('users'));
+        $waitlistCount = MusicianWaitlist::query()->where('status', 'pending')->count();
+
+        return view('users.index', [
+            'users' => $users,
+            'waitlistCount' => $waitlistCount
+        ]);
     }
 
     public function create()
