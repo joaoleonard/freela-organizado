@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('shows', function (Blueprint $table) {
-            $table->unsignedBigInteger('restaurant_id')->after('id')->nullable()->default(1);
-            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+            if (!Schema::hasColumn('shows', 'restaurant_id')) {
+                $table->unsignedBigInteger('restaurant_id')->nullable()->default(1)->after('id');
+            }
+
+            $table->foreign('restaurant_id')
+                ->references('id')
+                ->on('restaurants')
+                ->onDelete('cascade');
         });
     }
 
