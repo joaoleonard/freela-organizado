@@ -13,7 +13,10 @@ class RestaurantsSeeder extends Seeder
      */
     public function run(): void
     {
-        Restaurant::factory(5)->create([
+        Restaurant::create([
+            'name' => 'Boussolé Rooftop',
+            'address' => 'Av. Maringá, 2247',
+            'city' => 'Londrina',
             'admin_id' => 1,
         ]);
     }
