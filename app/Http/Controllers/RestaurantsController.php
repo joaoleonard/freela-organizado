@@ -34,7 +34,7 @@ class RestaurantsController extends Controller
 
         $shows = $restaurant->shows()
             ->where('show_date', '>=', today()->toDateString())
-            ->orderBy('date', 'desc')
+            ->orderBy('show_date', 'desc')
             ->get();
 
         $shows = $shows->map(function ($show) {
