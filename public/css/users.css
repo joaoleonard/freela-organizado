@@ -62,6 +62,24 @@
     text-align: right;
 }
 
+.unlink-button {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    font-size: 10px;
+    align-items: center;
+    justify-content: center;
+    background: #ff4d4d;
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+}
+
 @media screen and (max-width: 600px) {
     .user-card {
         flex-direction: column;

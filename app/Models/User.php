@@ -85,4 +85,12 @@ class User extends Authenticatable
     {
         return $this->role->type === 'musician';
     }
+
+    /**
+     * Get the restaurants associated with the user.
+     */
+    public function restaurants()
+    {
+        return $this->belongsToMany(Restaurant::class, 'musician_restaurant');
+    }
 }

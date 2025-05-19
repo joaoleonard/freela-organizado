@@ -8,15 +8,13 @@
 
 @section('content')
     <div class="button-group">
-        @if (auth()->user()->isMaster())
-            <a href="{{ route('users.create') }}" class="action-btn">Cadastrar Usuário</a>
-            <a href="{{ route('waitlist') }}" class="action-btn outline-btn waitlist-button">
-                Lista de Espera
-                @if($waitlistCount > 0)
-                    <p class="waitlist-count">{{ $waitlistCount }}</p>
-                @endif
-            </a>
-        @endif
+        <a href="{{ route('users.create') }}" class="action-btn">Cadastrar Usuário</a>
+        <a href="{{ route('waitlist') }}" class="action-btn outline-btn waitlist-button">
+            Lista de Espera
+            @if ($waitlistCount > 0)
+                <p class="waitlist-count">{{ $waitlistCount }}</p>
+            @endif
+        </a>
     </div>
 
     <h2>Usuários</h2>
@@ -34,4 +32,6 @@
             </div>
         </div>
     @endforeach
+
+    <button class="action-btn back-button" data-go_to="/dashboard" type="submit">Voltar</button>
 @endsection

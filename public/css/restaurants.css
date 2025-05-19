@@ -2,7 +2,7 @@
     min-width: 750px;
 }
 
-.shows-container {
+.restaurants-container {
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -10,13 +10,12 @@
     justify-content: space-between;
 }
 
-.show-box {
+.restaurant-box {
     background: #e0e0e0;
     padding: 20px;
     border-radius: 8px;
-    margin: 10px 20px;
+    margin: 10px 0;
     text-align: left;
-    width: 100px;
     height: 100px;
     display: flex;
     align-items: center;
@@ -27,27 +26,8 @@
     position: relative;
 }
 
-.show-box:hover {
-    opacity: 0.8;
-}
-
-.available-users-count {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #333;
-    color: #fff;
-    width: 20px;
-    height: 20px;
-    font-size: 0.75rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.available-users-count[title] {
-    white-space: pre-line;
+.restaurant-box:hover {
+    background: #d0d0d0;
 }
 
 select {
@@ -65,26 +45,7 @@ p {
 
 h3 {
     font-size: 1.125rem;
-    margin-bottom: 0;
-}
-
-.week-day {
-    font-size: 0.875rem;
-    margin-bottom: 10px;
-}
-
-.lunchtime {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #333;
-    color: #fff;
-    font-size: 0.75rem;
-    border-radius: 10px;
-    padding: 0 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0;
 }
 
 .title-container {
@@ -119,25 +80,9 @@ h3 {
         max-width: 95% !important;
     }
 
-    .show-box {
+    .restaurant-box {
         flex-direction: column;
         padding: 10px;
         margin: 10px;
-    }
-
-    .available-users-count, .lunchtime {
-        font-size: 0.6rem;
-    }
-
-    .lunchtime {
-        top: 5px;
-        right: 5px;
-    }
-
-    .available-users-count {
-        top: 5px;
-        left: 5px;
-        width: 15px;
-        height: 15px;
     }
 }

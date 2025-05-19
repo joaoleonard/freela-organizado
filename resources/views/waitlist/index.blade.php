@@ -9,6 +9,9 @@
 @section('content')
     <h2>Lista de Espera</h2>
 
+    @if ($waitlist->isEmpty())
+        <h3>Nenhum músico na lista de espera</h3>
+    @endif
     @foreach ($waitlist as $user)
         <div class="musician-waitlist-card" data-user_id="{{ $user->id }}">
             <h3>{{ $user->name }}</h3>
@@ -29,7 +32,5 @@
         </div>
     @endforeach
 
-    <div class="button-group">
-        <a href="{{ route('users') }}" class="action-btn outline-btn">Voltar</a>
-    </div>
+    <button class="action-btn back-button" data-go_to="/users" type="submit">Voltar</button>
 @endsection

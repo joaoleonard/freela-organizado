@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RestaurantsController;
 use App\Http\Controllers\ShowsController;
+use App\Http\Controllers\ShowsRestaurantController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WaitListController;
 use App\Http\Middleware\IsMaster;
@@ -36,18 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/disponibilidade', [ShowsController::class, 'musicianAvailability'])->name('disponibilidade');
 
         Route::post('/disponibilidade', [ShowsController::class, 'setAvailability'])->name('set.disponibilidade');
-
-        Route::group(['middleware' => IsMaster::class], function () {
-            Route::get('/create', [ShowsController::class, 'create'])->name('shows.create');
-
-            Route::post('/', [ShowsController::class, 'store'])->name('shows.store');
-
-            Route::get('/{show}', [ShowsController::class, 'show'])->name('shows.show');
-
-            Route::put('/{show}', [ShowsController::class, 'update'])->name('shows.update');
-
-            Route::delete('/{show}', [ShowsController::class, 'destroy'])->name('shows.destroy');
-        });
     });
 
     Route::prefix('/users')->group(function () {
@@ -75,6 +65,48 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/{musicianWaitlist}', [WaitListController::class, 'update'])->name('waitlist.update');
 
             Route::delete('/{musicianWaitlist}', [WaitListController::class, 'destroy'])->name('waitlist.destroy');
+        });
+    });
+
+    Route::prefix('/restaurants')->group(function () {
+        Route::get('/', [RestaurantsController::class, 'index'])->name('restaurants');
+
+        Route::get('/create', [RestaurantsController::class, 'create'])->name('restaurants.create');
+
+        Route::post('/', [RestaurantsController::class, 'store'])->name('restaurants.store');
+
+        Route::prefix('/{restaurant}')->group(function () {
+            Route::get('/', [RestaurantsController::class, 'show'])->name('restaurant.show');
+
+            Route::put('/', [RestaurantsController::class, 'update'])->name('restaurant.update');
+
+            Route::delete('/', [RestaurantsController::class, 'destroy'])->name('restaurant.destroy');
+
+            Route::prefix('/shows')->group(function () {
+                Route::get('/', [ShowsRestaurantController::class, 'index'])->name('restaurant.shows');
+
+                Route::get('/create', [ShowsRestaurantController::class, 'create'])->name('restaurant.shows.create');
+
+                Route::post('/', [ShowsRestaurantController::class, 'store'])->name('restaurant.shows.store');
+
+                Route::get('/{show}', [ShowsRestaurantController::class, 'show'])->name('restaurant.shows.show');
+
+                Route::put('/{show}', [ShowsRestaurantController::class, 'update'])->name('restaurant.shows.update');
+
+                Route::delete('/{show}', [ShowsRestaurantController::class, 'destroy'])->name('restaurant.shows.destroy');
+            });
+
+            Route::prefix('/users')->group(function () {
+                Route::get('/', [RestaurantsController::class, 'musicians'])->name('restaurant.musicians');
+
+                Route::get('/link', [RestaurantsController::class, 'addMusician'])->name('restaurant.musicians.add');
+
+                Route::post('/link', [RestaurantsController::class, 'linkMusician'])->name('restaurant.musicians.link');
+
+                Route::get('/{musician}', [RestaurantsController::class, 'showMusician'])->name('restaurant.musicians.show');
+
+                Route::delete('/{musician}', [RestaurantsController::class, 'unlinkMusician'])->name('restaurant.musicians.remove');
+            });
         });
     });
 });

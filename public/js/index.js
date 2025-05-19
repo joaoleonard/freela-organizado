@@ -7,6 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    const restaurantBox = document.querySelectorAll(".restaurant-box");
+    restaurantBox.forEach((card) => {
+        card.addEventListener("click", function () {
+            const showId = this.dataset.restaurant_id;
+            window.location.href = `restaurants/${showId}`;
+        });
+    });
+
     const users = document.querySelectorAll(".user-card");
     users.forEach((card) => {
         card.addEventListener("click", function () {
@@ -26,7 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const backButton = document.querySelector(".back-button");
     if (backButton) {
         backButton.addEventListener("click", function () {
-            window.history.back();
+            const goTo = this.dataset.go_to;
+
+            if (goTo) {
+                window.location.href = goTo;
+            }
         });
     }
 

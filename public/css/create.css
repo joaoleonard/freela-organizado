@@ -56,16 +56,30 @@
 
 }
 
-.back-button {
-    background-color: #fff;
-    border: 2px solid #ccc;
-    color: #333;
-    height: 47px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+
+.shows-container {
+    margin-top: 20px;
 }
 
-.back-button:hover {
-    background-color: #f9f9f9;
+.show-box {
+    background: #e0e0e0;
+    border-radius: 8px;
+    margin: 10px 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
 }
+
+.show-box:hover {
+    opacity: 0.8;
+}
+
+.today {
+    background: #616161;
+    color: #fff;
+}
+

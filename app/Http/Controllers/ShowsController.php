@@ -6,7 +6,6 @@ use App\Http\Requests\CreateShowRequest;
 use App\Http\Requests\UpdateShowRequest;
 use App\Models\Show;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class ShowsController extends Controller
 {
@@ -65,22 +64,29 @@ class ShowsController extends Controller
 
     public function musicianAvailability()
     {
-        $shows = Show::query()
-            ->where('show_date', '>=', today()->toDateString())
-            ->orderBy('show_date')
-            ->orderByDesc('lunchtime')
-            ->get();
+        $restaurants = auth()->user()->restaurants;
 
-        $shows = $shows->map(function ($show) {
-            \Carbon\Carbon::setLocale('pt_BR');
-            $show->formatted_date = \Carbon\Carbon::parse($show->show_date)->translatedFormat('d/m/y (l)');
-            $show->isToday = \Carbon\Carbon::parse($show->show_date)->isToday();
-            $show->isSaturday = \Carbon\Carbon::parse($show->show_date)->isSaturday();
-            $show->checked = in_array(auth()->user()->id, explode(',', $show->available_users));
-            return $show;
+        $restaurants = $restaurants->map(function ($restaurant) {
+            $restaurant->shows = Show::query()
+                ->where('show_date', '>=', today()->toDateString())
+                ->where('restaurant_id', $restaurant->id)
+                ->orderBy('show_date')
+                ->orderByDesc('lunchtime')
+                ->get();
+
+            $restaurant->shows = $restaurant->shows->map(function ($show) {
+                \Carbon\Carbon::setLocale('pt_BR');
+                $show->formatted_date = \Carbon\Carbon::parse($show->show_date)->translatedFormat('d/m (l)');
+                $show->isToday = \Carbon\Carbon::parse($show->show_date)->isToday();
+                $show->isSaturday = \Carbon\Carbon::parse($show->show_date)->isSaturday();
+                $show->checked = in_array(auth()->user()->id, explode(',', $show->available_users)) || $show->user_id == auth()->user()->id;
+                return $show;
+            });
+
+            return $restaurant;
         });
 
-        return view('availability', compact('shows'));
+        return view('availability', compact('restaurants'));
     }
 
     public function setAvailability(Request $request)

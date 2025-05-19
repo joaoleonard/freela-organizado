@@ -32,6 +32,13 @@ a {
     font-weight: 600;
 }
 
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
 .logout-btn {
     background: #ff4d4d;
     color: white;
@@ -86,8 +93,18 @@ a {
     align-items: center;
 }
 
-.action-btn:hover {
-    background: #5563c1;
+.back-button {
+    background-color: #333;
+    border: 2px solid #333;
+    color: #fff;
+    height: 47px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.back-button:hover, .action-btn:hover {
+    opacity: 0.8;
 }
 
 .outline-btn {

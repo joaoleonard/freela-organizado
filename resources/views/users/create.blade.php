@@ -42,4 +42,6 @@
         </div>
         <button class="action-btn" type="submit">Cadastrar</button>
     </form>
+
+    <button class="action-btn back-button" data-go_to="/users" type="submit">Voltar</button>
 @endsection

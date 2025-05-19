@@ -31,6 +31,16 @@
     margin: 0;
 }
 
+.restaurant-infos {
+    text-align: right;
+}
+
+.restaurant-infos .restaurant-name {
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin: 0;
+}
+
 @media screen and (max-width: 600px) {
     .show-card,
     .is-today-show-card {
