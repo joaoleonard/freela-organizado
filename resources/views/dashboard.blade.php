@@ -37,9 +37,11 @@
                     @if (auth()->user()->isMusician())
                         <p>{{ $show->restaurant->city }}</p>
                     @else
-                        <p><strong>Nome:</strong> {{ $show->user->name }}</p>
-                        <p><strong>Telefone:</strong> {{ $show->user->phone }}</p>
-                        <p><strong>Pix:</strong> {{ $show->user->pix }}</p>
+                        @if ($show->user)
+                            <p><strong>Nome:</strong> {{ $show->user->name }}</p>
+                            <p><strong>Telefone:</strong> {{ $show->user->phone }}</p>
+                            <p><strong>Pix:</strong> {{ $show->user->pix }}</p>
+                        @endif
                     @endif
                 </div>
             </div>
