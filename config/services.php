@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'wppconnect' => [
+        'url' => env('WPP_CONNECT_URL'),
+        'token' => env('WPP_CONNECT_TOKEN'),
+    ]
 ];
