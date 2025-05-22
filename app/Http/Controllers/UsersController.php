@@ -57,7 +57,7 @@ class UsersController extends Controller
     {
         if (!$user) {
             return redirect()->route('users')->with('error', 'Usuário não encontrado!');
-        } else if ($user->id != auth()->user()->id) {
+        } else if ($user->id != auth()->user()->id && !auth()->user()->isMaster()) {
             return redirect()->route('dashboard')->with('error', 'Você não tem permissão para acessar este usuário!');
         }
 
