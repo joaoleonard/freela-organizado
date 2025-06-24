@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('shows', function (Blueprint $table) {
-            $table->time('show_time')->nullable();
+            $table->string('show_time')->nullable();
         });
     }
 
