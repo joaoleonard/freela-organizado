@@ -31,7 +31,10 @@
     @else
         @foreach ($shows as $show)
             <div class="{{ $show->isToday ? 'is-today-show-card' : 'show-card' }}">
-                <h3>{{ $show->isToday ? 'Hoje' : $show->formatted_date }} {{ $show->lunchtime ? '- almoço' : '' }}</h3>
+                <div>
+                    <h3>{{ $show->isToday ? 'Hoje' : $show->formatted_date }}</h3>
+                    <p class="show-time">{{ $show->show_time }}</p>
+                </div>
                 <div class="restaurant-infos">
                     <p class="restaurant-name">{{ $show->restaurant->name }}</p>
                     @if (auth()->user()->isMusician())

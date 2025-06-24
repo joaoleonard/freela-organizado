@@ -43,8 +43,13 @@ class SendShowReminder extends Command
 
     private function sendReminder($show)
     {
+        if (!$show->user || !$show->user->phone) {
+            $this->error("No user or phone number found for show ID {$show->id}");
+            return;
+        }
+
         $phone = $show->user->phone;
-        $message = "*Olá {$show->user->name}!* \n\nPassando para lembrar do seu show hoje em *{$show->restaurant->name}* 🎶 \nNão se esqueça de levar todos os equipamentos necessários! 🎤🎸 \nFaça um bom show! \n\n*Freela Organizado*";
+        $message = "*Olá {$show->user->name}!* \n\nPassando para lembrar do seu show hoje em *{$show->restaurant->name}* às *{$show->show_time}* 🎶 \nNão se esqueça de levar todos os equipamentos necessários! 🎤🎸 \nFaça um bom show! \n\n*Freela Organizado*";
 
         $wppConnectApi = app(WppConnectionApi::class);
         $response = $wppConnectApi->notification($phone, $message);

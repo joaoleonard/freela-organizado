@@ -65,11 +65,17 @@ p {
 
 h3 {
     font-size: 1.125rem;
-    margin-bottom: 0;
+    margin: 0;
+}
+
+.show-time {
+    font-size: 0.875rem;
+    margin: 5px 0;
+    font-weight: 600;
 }
 
 .week-day {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     margin-bottom: 10px;
 }
 

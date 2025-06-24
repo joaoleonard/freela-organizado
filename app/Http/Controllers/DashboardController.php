@@ -23,15 +23,14 @@ class DashboardController extends Controller
 
         if ($user->isMaster() || $user->isAdmin()) {
             $shows = Show::query()
-                ->where('show_date', '>=', today()
-                ->toDateString())
+                ->where('show_date', '>=', today())
+                ->where('show_date', '<=', today()->addDays(1))
                 ->orderBy('show_date')
                 ->orderByDesc('lunchtime')
                 ->get();
         } else {
             $shows = Show::query()
-                ->where('show_date', '>=', today()
-                ->toDateString())
+                ->where('show_date', '>=', today())
                 ->where('user_id', $user->id)
                 ->orderBy('show_date')
                 ->orderByDesc('lunchtime')

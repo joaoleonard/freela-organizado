@@ -22,7 +22,10 @@
     @else
         @foreach ($shows as $show)
             <div class="{{ $show->isToday ? 'is-today-show-card' : 'show-card' }}">
-                <h3>{{ $show->formatted_date }} {{ $show->lunchtime ? '- almoço' : '' }}</h3>
+                <div>
+                    <h3>{{ $show->isToday ? 'Hoje' : $show->formatted_date }}</h3>
+                    <p class="show-time">{{ $show->show_time }}</p>
+                </div>
                 @if ($show->user)
                     <div class="user-infos">
                         <p class="musician-name">{{ $show->user->name }}</p>
