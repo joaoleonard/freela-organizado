@@ -11,10 +11,6 @@
 
     <div>
         <h3>{{ $show->formatted_date }}</h3>
-
-        @if ($show->lunchtime)
-            <span class="lunchtime">almoço</span>
-        @endif
     </div>
 
     <form action="{{ route('shows.update', $show->id) }}" method="POST" class="form-container">

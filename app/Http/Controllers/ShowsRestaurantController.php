@@ -28,7 +28,7 @@ class ShowsRestaurantController extends Controller
         $shows = $restaurant->shows()
             ->where('show_date', '>=', today()->toDateString())
             ->orderBy('show_date', 'asc')
-            ->orderByDesc('lunchtime')
+            ->orderBy('show_time', 'asc')
             ->get();
 
         $shows = $shows->map(function ($show) {
@@ -44,7 +44,6 @@ class ShowsRestaurantController extends Controller
             $show->week_day = \Carbon\Carbon::parse($show->show_date)->translatedFormat('(l)');
             $show->isToday = \Carbon\Carbon::parse($show->show_date)->isToday();
             $show->isSaturday = \Carbon\Carbon::parse($show->show_date)->isSaturday();
-            $show->lunchtime = $show->show_time === '12:30';
             return $show;
         });
 

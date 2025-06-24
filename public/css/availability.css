@@ -68,7 +68,7 @@
     }
 }
 
-.lunchtime {
+.show-time {
     font-weight: 600;
     margin: 0 10px;
 }
@@ -78,7 +78,7 @@
         font-size: 1rem;
     }
 
-    .lunchtime {
+    .show-time {
         font-size: 0.9rem;
     }
 }

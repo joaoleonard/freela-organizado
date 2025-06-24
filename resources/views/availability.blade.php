@@ -38,12 +38,9 @@
                             <input class="checkbox" type="checkbox" id="show-{{ $show->id }}" name="shows[]"
                                 value="{{ $show->id }}" {{ $show->checked ? 'checked' : '' }}>
                             <label for="show-{{ $show->id }}">{{ $show->formatted_date }}</label>
-                            @if ($show->show_time)
-                                <p class="lunchtime"> {{$show->show_time}}</p>
-                            @endif
-                            <p></p>
+                            <p class="show-time"> {{ $show->show_time }}</p>
                         </div>
-                        @if ($show->isSaturday && !$show->lunchtime)
+                        @if ($show->isSaturday && $show->show_time == '20:00')
                             <div class="divisor"></div>
                         @endif
                     @endforeach

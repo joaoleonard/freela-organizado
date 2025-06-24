@@ -65,7 +65,7 @@ class UsersController extends Controller
             ->where('user_id', $user->id)
             ->where('show_date', '>=', today()->toDateString())
             ->orderBy('show_date')
-            ->orderByDesc('lunchtime')
+            ->orderBy('show_time')
             ->get();
 
         $shows = $shows->map(function ($show) {

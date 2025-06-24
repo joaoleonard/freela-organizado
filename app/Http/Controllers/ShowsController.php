@@ -2,66 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateShowRequest;
-use App\Http\Requests\UpdateShowRequest;
 use App\Models\Show;
 use Illuminate\Http\Request;
 
 class ShowsController extends Controller
 {
-    public function index()
-    {
-        $user = auth()->user();
-
-        if (!$user) {
-            return redirect('/login');
-        } elseif ($user->isMusician()) {
-            return redirect('/dashboard');
-        }
-
-        $shows = Show::query()
-            ->where('show_date', '>=', today()->toDateString())
-            ->orderBy('show_date')
-            ->orderByDesc('lunchtime')
-            ->get();
-
-        $shows = $shows->map(function ($show) {
-            $show->users = collect(explode(',', $show->available_users))
-                ->filter()
-                ->map(function ($userId) {
-                    return \App\Models\User::find($userId);
-                })
-                ->filter();
-
-            \Carbon\Carbon::setLocale('pt_BR');
-            $show->formatted_date = \Carbon\Carbon::parse($show->show_date)->translatedFormat('d/m');
-            $show->week_day = \Carbon\Carbon::parse($show->show_date)->translatedFormat('(l)');
-            $show->isToday = \Carbon\Carbon::parse($show->show_date)->isToday();
-            $show->isSaturday = \Carbon\Carbon::parse($show->show_date)->isSaturday();
-            return $show;
-        });
-
-        return view('shows.index', compact('shows'));
-    }
-
-    public function create()
-    {
-        if (!auth()->user()) {
-            return redirect('/login');
-        } elseif (auth()->user()->isMusician()) {
-            return redirect('/dashboard');
-        }
-
-        return view('shows.create');
-    }
-
-    public function store(CreateShowRequest $request)
-    {
-        Show::create(array_merge($request->all(), ['available_users' => json_encode([])]));
-
-        return redirect()->route('shows')->with('success', 'Data criada com sucesso!');
-    }
-
     public function musicianAvailability()
     {
         $restaurants = auth()->user()->restaurants;
@@ -71,7 +16,7 @@ class ShowsController extends Controller
                 ->where('show_date', '>=', today()->toDateString())
                 ->where('restaurant_id', $restaurant->id)
                 ->orderBy('show_date')
-                ->orderByDesc('lunchtime')
+                ->orderBy('show_time')
                 ->get();
 
             $restaurant->shows = $restaurant->shows->map(function ($show) {
@@ -116,34 +61,5 @@ class ShowsController extends Controller
         }
 
         return redirect()->route('dashboard')->with('success', 'Disponibilidade preenchida com sucesso!');
-    }
-
-    public function show(Show $show)
-    {
-        \Carbon\Carbon::setLocale('pt_BR');
-        $show->formatted_date = \Carbon\Carbon::parse($show->show_date)->translatedFormat('d/m/y (l)');
-        $show->users = collect(explode(',', $show->available_users))
-            ->filter()
-            ->map(function ($userId) {
-                return \App\Models\User::find($userId);
-            })
-            ->filter();
-
-        return view('shows.edit', compact('show'));
-    }
-
-    public function update(UpdateShowRequest $request, Show $show)
-    {
-        $show->fill($request->all());
-        $show->save();
-
-        return redirect()->route('shows')->with('success', 'Show editado com sucesso!');
-    }
-
-    public function destroy(Show $show)
-    {
-        $show->delete();
-
-        return redirect()->route('shows')->with('success', 'Show deletado com sucesso!');
     }
 }
