@@ -26,14 +26,14 @@ class DashboardController extends Controller
                 ->where('show_date', '>=', today())
                 ->where('show_date', '<=', today()->addDays(1))
                 ->orderBy('show_date')
-                ->orderByDesc('lunchtime')
+                ->orderByDesc('show_hour')
                 ->get();
         } else {
             $shows = Show::query()
                 ->where('show_date', '>=', today())
                 ->where('user_id', $user->id)
                 ->orderBy('show_date')
-                ->orderByDesc('lunchtime')
+                ->orderByDesc('show_hour')
                 ->get();
         }
 

@@ -23,6 +23,7 @@ class UpdateShowRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'exists:users,id'],
+            'show_time' => ['nullable', 'date_format:H:i'],
         ];
     }
 
@@ -36,6 +37,7 @@ class UpdateShowRequest extends FormRequest
         return [
             'user_id.required' => 'O campo músico é obrigatório.',
             'user_id.exists' => 'O músico informado não existe.',
+            'show_time.date_format' => 'O horário do show deve estar no formato HH:MM.',
         ];
     }
 }
