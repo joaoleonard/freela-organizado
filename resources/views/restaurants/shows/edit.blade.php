@@ -41,7 +41,7 @@
 
         <div class="form-group">
             <label for="show_time">Hora do Show:</label>
-            <select id="show_time" name="show_time" required class="select">
+            <select id="show_time" name="show_time" required class="select" value="{{ $show->show_time }}">
                 <option value="12:00">12:00</option>
                 <option value="12:30">12:30</option>
                 <option value="19:00">19:00</option>
