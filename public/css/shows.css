@@ -31,6 +31,37 @@
     opacity: 0.8;
 }
 
+.user-filter {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 4px;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    user-select: none;
+    opacity: 50%;
+}
+
+.user-filter:hover {
+    opacity: 80%;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.user-filter.active {
+    opacity: 100%;
+}
+
+.user-filter.active:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 .available-users-count {
     position: absolute;
     top: 10px;

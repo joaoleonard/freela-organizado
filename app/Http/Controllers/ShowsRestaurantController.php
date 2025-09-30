@@ -31,6 +31,10 @@ class ShowsRestaurantController extends Controller
             ->orderBy('show_time', 'asc')
             ->get();
 
+        $musicians = $restaurant->musicians()
+            ->orderBy('name')
+            ->get();
+
         $shows = $shows->map(function ($show) {
             $show->users = collect(explode(',', $show->available_users))
                 ->filter()
@@ -47,7 +51,7 @@ class ShowsRestaurantController extends Controller
             return $show;
         });
 
-        return view('restaurants.shows.index', compact('restaurant', 'shows'));
+        return view('restaurants.shows.index', compact('restaurant', 'shows', 'musicians'));
     }
 
     public function create(Restaurant $restaurant)

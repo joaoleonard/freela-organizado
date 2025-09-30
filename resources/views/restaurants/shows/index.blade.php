@@ -14,13 +14,19 @@
         <a href="{{ route('restaurant.shows.create', $restaurant->id) }}" class="add-button">+</a>
     </div>
 
+    <div style="margin: 20px 0;">
+        @foreach($musicians as $musician)
+            <div class="user-filter bg-{{$musician->id}}" data-user-id="{{ $musician->id }}">{{ $musician->name }}</div>
+        @endforeach
+    </div>
+
     <div class="shows-container">
         @if ($shows->isEmpty())
             <h3>Nenhuma data cadastrada ainda</h3>
         @endif
         @foreach ($shows as $show)
             <div class="show-box bg-{{ $show->user_id }}" data-show_id="{{ $show->id }}"
-                data-restaurant_id="{{ $restaurant->id }}">
+                data-restaurant_id="{{ $restaurant->id }}" data-user-id="{{ $show->user_id }}">
                 <p class="show-time">{{ $show->show_time }}</p>
                 <h3>{{ $show->formatted_date }}</h3>
                 <p class="week-day">{{ $show->week_day }}</p>

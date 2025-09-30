@@ -60,4 +60,28 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    const filters = document.querySelectorAll('.user-filter');
+    const shows = document.querySelectorAll('.show-box');
+
+    filters.forEach(filter => {
+        filter.addEventListener('click', function () {
+            this.classList.toggle('active');
+
+            const activeFilters = Array.from(filters).filter(f => f.classList.contains('active'));
+
+            if (activeFilters.length === 0) {
+                shows.forEach(show => {
+                    show.style.display = '';
+                });
+                return;
+            }
+
+            const activeUserIds = activeFilters.map(f => f.dataset.userId);
+
+            shows.forEach(show => {
+                show.style.display = activeUserIds.includes(show.dataset.userId) ? '' : 'none';
+            });
+        });
+    });
 });
