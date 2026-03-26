@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\MusicianWaitlist;
 use App\Models\Show;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -102,6 +104,25 @@ class UsersController extends Controller
         }
 
         return redirect()->route('dashboard')->with('success', 'Dados atualizados com sucesso!');
+    }
+
+    public function editPassword(User $user)
+    {
+        if (!$user) {
+            return redirect()->route('users')->with('error', 'Usuário não encontrado!');
+        } else if ($user->id != auth()->user()->id && !auth()->user()->isMaster()) {
+            return redirect()->route('dashboard')->with('error', 'Você não tem permissão para acessar este usuário!');
+        }
+
+        return view('users.change-password', compact('user'));
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request, User $user)
+    {
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('users.show', $user->id)->with('success', 'Senha alterada com sucesso!');
     }
 
     public function destroy(User $user)

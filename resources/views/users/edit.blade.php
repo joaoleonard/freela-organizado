@@ -34,6 +34,8 @@
         @endif
     </form>
 
+    <a href="{{ route('users.edit-password', $user->id) }}" class="action-btn outline-btn">Alterar Senha</a>
+
     @if (auth()->user()->isMaster())
         <h2>Próximos Shows:</h2>
 

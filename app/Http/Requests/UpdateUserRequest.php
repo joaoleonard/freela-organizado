@@ -24,7 +24,19 @@ class UpdateUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:30'],
             'phone' => ['required'],
-            'pix' => ['required', 'string'],
+            'pix' => ['required', 'unique:users,pix', 'string'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'pix.unique' => 'PIX já está em uso',
         ];
     }
 }

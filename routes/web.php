@@ -54,6 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
 
         Route::put('/{user}', [UsersController::class, 'update'])->name('users.update');
+
+        Route::get('/{user}/change-password', [UsersController::class, 'editPassword'])->name('users.edit-password');
+
+        Route::put('/{user}/change-password', [UsersController::class, 'updatePassword'])->name('users.update-password');
     });
 
     Route::prefix('/waitlist')->group(function () {
