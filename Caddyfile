@@ -1,6 +1,6 @@
 :8080
 
-root * public/
+root * /app/public
 encode gzip
 
 php_server
