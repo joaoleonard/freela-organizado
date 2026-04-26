@@ -16,8 +16,11 @@ COPY . .
 # instala dependências
 RUN composer install --no-dev --optimize-autoloader
 
+# garante permissões de escrita no storage e cache
+RUN chmod -R 775 storage bootstrap/cache
+
 # porta
 EXPOSE 8080
 
-# roda laravel
-CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
+# roda laravel com router para roteamento correto
+CMD ["sh", "-c", "php artisan config:clear && php artisan storage:link --force 2>/dev/null || true && php -S 0.0.0.0:${PORT:-8080} -t public public/router.php"]
