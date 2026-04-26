@@ -22,12 +22,9 @@ RUN chmod -R 775 storage bootstrap/cache
 # porta
 EXPOSE 8080
 
-# roda laravel: cria diretórios necessários, aguarda postgres, migra e inicia
-CMD ["sh", "-c", "\
-  mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache/data storage/logs && \
-  chmod -R 775 storage bootstrap/cache && \
-  echo 'Aguardando banco de dados...' && \
-  until php artisan migrate --force 2>&1; do echo 'DB ainda nao pronto, tentando em 3s...'; sleep 3; done && \
-  php artisan config:clear && \
-  php artisan view:clear && \
-  php -S 0.0.0.0:${PORT:-8080} -t public public/router.php"]
+# copia e torna executável o entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# inicia a aplicação
+CMD ["/entrypoint.sh"]
