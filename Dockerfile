@@ -20,4 +20,4 @@ RUN composer install --no-dev --optimize-autoloader
 EXPOSE 8080
 
 # roda laravel
-CMD php -S 0.0.0.0:${PORT:-8080} -t public
+CMD php -S 0.0.0.0:$PORT -t public
