@@ -22,5 +22,5 @@ RUN chmod -R 775 storage bootstrap/cache
 # porta
 EXPOSE 8080
 
-# roda laravel com router para roteamento correto
-CMD ["sh", "-c", "php artisan config:clear && php artisan storage:link --force 2>/dev/null || true && php -S 0.0.0.0:${PORT:-8080} -t public public/router.php"]
+# roda laravel: cria o banco SQLite, roda migrations e inicia o servidor
+CMD ["sh", "-c", "touch database/database.sqlite && php artisan migrate --force || true && php artisan config:clear || true && php -S 0.0.0.0:${PORT:-8080} -t public public/router.php"]
