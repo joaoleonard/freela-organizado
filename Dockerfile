@@ -22,5 +22,5 @@ RUN chmod -R 775 storage bootstrap/cache
 # porta
 EXPOSE 8080
 
-# roda laravel: cria o banco SQLite, roda migrations e inicia o servidor
-CMD ["sh", "-c", "touch database/database.sqlite && php artisan migrate --force || true && php artisan config:clear || true && php -S 0.0.0.0:${PORT:-8080} -t public public/router.php"]
+# roda laravel: aguarda o postgres, roda migrations e inicia o servidor
+CMD ["sh", "-c", "echo 'Aguardando banco de dados...' && until php artisan migrate --force 2>&1; do echo 'DB ainda nao pronto, tentando novamente em 3s...'; sleep 3; done && php artisan config:clear && php -S 0.0.0.0:${PORT:-8080} -t public public/router.php"]
